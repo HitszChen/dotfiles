@@ -115,6 +115,12 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   npm install -g swagger
 fi;
 
+read -p "install the awesome tool terminal stackoverflow how2, are you sure? (y/n) " -n 1;
+echo "npm install -g how2";
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  npm install -g how2
+fi;
+
 echo -e "\033[40;32m change the default shell into: /bin/bash\033[0m"
 sudo chsh -s /bin/bash
 

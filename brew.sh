@@ -180,6 +180,7 @@ brew install proxychains-ng
 brew install the_silver_searcher
 # Note: this installs `npm` too, using the recommended installation method.
 brew install node
+brew install how2
 brew install iojs
 brew install cask
 # cool hack command
