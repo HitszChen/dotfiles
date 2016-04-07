@@ -74,9 +74,9 @@ apps=(
     wget
     curl
     git
-    ##firefox
+    firefox
     autojump
-    ##emacs-snapshot    # install the latest version from ppa
+    emacs-snapshot    # install the latest version from ppa
     openssh-server
     nodejs
     npm
