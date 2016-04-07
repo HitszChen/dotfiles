@@ -145,6 +145,28 @@ read -p "do you want to go through G-F-W? (y/n) " -n 1;
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "sudo pip install shadowsocks";
   sudo pip install shadowsocks
+
+  $SS_CFG="/etc/shadowsocks.json"
+  if [ ! -f "$SS_CFG" ]; then
+    touch "$SS_CFG"
+  fi
+
+  echo -e "\033[40;32m ecssserver -c $SS_CFG -d stop 033[0m"
+  cat > "$SS_CFG" <<EOF
+  {
+    "server":"my_server_ip",
+    "server_port":8388,
+    "local_address": "127.0.0.1",
+    "local_port":1080,
+    "password":"mypassword",
+    "timeout":300,
+    "method":"aes-256-cfb",
+    "fast_open": false
+  }
+  EOF
+  echo -e "\033[40;32m ecssserver -c $SS_CFG -d start 033[0m"
+
+  ssserver -c /etc/shadowsocks.json -d start
 fi;
 
 echo ""
