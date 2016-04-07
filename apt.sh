@@ -130,9 +130,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi;
 
 read -p "install the awesome tool htop2.0, are you sure? (y/n) " -n 1;
-echo "install htop2.0";
 CUR_DIR = $(pwd)
 if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo "install htop2.0";
   git clone https://github.com/hishamhm/htop
   cd $CUR_DIR/htop && ./autogen.sh && ./configure && make && sudo ln -s $CUR_DIR/htop/htop /usr/bin/htop
   cd -
@@ -140,6 +140,13 @@ fi;
 
 echo ""
 echo ""
+
+read -p "do you want to go through G-F-W? (y/n) " -n 1;
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo "sudo pip install shadowsocks";
+  sudo pip install shadowsocks
+fi;
+
 echo ""
 echo ""
 echo -e "\033[40;32m You can refer: https://blog.anmoljagetia.me/flatabulous-ubuntu-theme/  website to deploy you theme 033[0m"
