@@ -152,7 +152,6 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     sudo touch "$SS_CFG"
   fi
 
-  echo -e "\033[40;32m ecssserver -c $SS_CFG -d stop 033[0m"
 
 cat > "$SS_CFG" <<EOF
 {
@@ -167,9 +166,10 @@ cat > "$SS_CFG" <<EOF
 }
 EOF
 
-  echo -e "\033[40;32m ecssserver -c $SS_CFG -d start 033[0m"
+  echo -e "\033[40;32m starting the shadowsocks \033[0m"
 
-  ssserver -c /etc/shadowsocks.json -d start
+  ecssserver -c $SS_CFG -d stop
+  ecssserver -c $SS_CFG -d start
 fi;
 
 echo ""
