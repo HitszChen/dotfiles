@@ -129,6 +129,16 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   cd -
 fi;
 
+echo ""
+echo ""
+echo ""
+echo ""
+echo -e "\033[40;32m You can refer: https://blog.anmoljagetia.me/flatabulous-ubuntu-theme/  website to deploy you theme 033[0m"
+echo ""
+echo ""
+echo ""
+echo ""
+
 echo -e "\033[40;32m change the default shell into: /bin/bash\033[0m"
 sudo chsh -s /bin/bash
 
