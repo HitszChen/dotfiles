@@ -112,20 +112,21 @@ wget -O - https://raw.githubusercontent.com/nvbn/thefuck/master/install.sh | sh 
 read -p "install the awesome swagger, are you sure? (y/n) " -n 1;
 echo "npm install -g swagger";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  npm install -g swagger
+  sudo npm install -g swagger
 fi;
 
 read -p "install the awesome tool terminal stackoverflow how2, are you sure? (y/n) " -n 1;
 echo "npm install -g how2";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  npm install -g how2
+  sudo npm install -g how2
 fi;
 
 read -p "install the awesome tool htop2.0, are you sure? (y/n) " -n 1;
 echo "install htop2.0";
+CUR_DIR = $(pwd)
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   git clone https://github.com/hishamhm/htop
-  cd $(pwd)/htop && ./autogen.sh && ./configure && make && sudo ln -s $(pwd)/htop/htop /usr/bin/htop
+  cd $CUR_DIR/htop && ./autogen.sh && ./configure && make && sudo ln -s $CUR_DIR/htop/htop /usr/bin/htop
   cd -
 fi;
 
