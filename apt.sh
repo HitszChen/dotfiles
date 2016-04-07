@@ -121,6 +121,12 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   npm install -g how2
 fi;
 
+read -p "install the awesome tool htop2.0, are you sure? (y/n) " -n 1;
+echo "install htop2.0";
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  (git clone https://github.com/hishamhm/htop /tmp/; cd /tmp/htop; ./autogen.sh && ./configure && make, sudo ln -s ~/htop/htop /usr/bin)
+fi;
+
 echo -e "\033[40;32m change the default shell into: /bin/bash\033[0m"
 sudo chsh -s /bin/bash
 
