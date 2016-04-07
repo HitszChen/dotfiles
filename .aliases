@@ -147,3 +147,6 @@ alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resource
 
 # Reload the shell (i.e. invoke as a login shell)
 alias reload="exec $SHELL -l"
+
+# proxy to local shadowsocks proxy, eg: pc4 ping www.google.com
+alias pc4="proxychains4"
