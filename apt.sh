@@ -130,10 +130,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi;
 
 read -p "install the awesome tool htop2.0, are you sure? (y/n) " -n 1;
-CUR_DIR=$(pwd)
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "install htop2.0";
   git clone https://github.com/hishamhm/htop
+  CUR_DIR=$(pwd)
   cd $CUR_DIR/htop && ./autogen.sh && ./configure && make && sudo ln -s $CUR_DIR/htop/htop /usr/bin/htop
   cd -
 fi;
@@ -144,7 +144,7 @@ echo ""
 read -p "do you want to go through G-F-W? (y/n) " -n 1;
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "sudo pip install shadowsocks";
-  sudo pip install shadowsocks
+  sudo -H pip install shadowsocks
 
   SS_CFG="/etc/shadowsocks.json"
   if [ ! -f "$SS_CFG" ]; then
