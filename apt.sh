@@ -103,8 +103,8 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
 echo -e "\033[40;32m install the z, refer: https://github.com/rupa/z/blob/master/z.sh \033[0m"
-git clone https://github.com/rupa/z ~/.z
-. ~/.z/z.sh
+git clone https://github.com/rupa/z ~/z
+. ~/z/z.sh
 
 echo -e "\033[40;32m install liquidprompt \033[0m"
 git clone https://github.com/nojhan/liquidprompt.git ~/.liquidprompt

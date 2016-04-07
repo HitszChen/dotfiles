@@ -57,7 +57,7 @@ complete -o "nospace" -W "Contacts Calendar Dock Finder Mail Safari iTunes Syste
 
 # for source liquidprompt && z awesome tools
 [[ `uname -s` == "Linux" ]] && [[ $- = *i* ]] && source ~/.liquidprompt/liquidprompt
-[[ `uname -s` == "Linux" ]] && . ~/.z/z.sh
+[[ `uname -s` == "Linux" ]] && . ~/z/z.sh
 [[ `uname -s` == "Darwin" ]] && . /usr/local/share/liquidprompt
 [[ `uname -s` == "Darwin" ]] && . `brew --prefix`/etc/profile.d/z.sh
 
