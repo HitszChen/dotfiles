@@ -30,9 +30,9 @@ echo ""
 
 
 if hash apt-get 2>/dev/null; then
-	cecho "apt has been installed, just continue install ..." $green
+  cecho "apt has been installed, just continue install ..." $green
 else
-	cecho "no apt found! exit ..." $yellow
+  cecho "no apt found! exit ..." $yellow
   exit
 fi
 
@@ -54,7 +54,7 @@ cecho "purge the old tools: firefox ..." $yellow
 sudo apt-get purge firefox
 
 apps=(
-	  # Utilities
+    # Utilities
     ## for openresty
     libreadline-dev
     libncurses5-dev
@@ -64,33 +64,37 @@ apps=(
     make
     build-essential
 
-	  ## Dev tools
+    ## for python
+    python-pip
+    python-dev
+
+    ## Dev tools
     cmatrix
     wget
     curl
     git
-		##firefox
-		autojump
+    ##firefox
+    autojump
     ##emacs-snapshot    # install the latest version from ppa
-		openssh-server
+    openssh-server
     nodejs
     npm
 )
 
 for item in ${apps[@]}; do
-	cecho "> ${item}" $magenta
+  cecho "> ${item}" $magenta
 done
 
 echo ""
 
 select yn in "Yes" "No"; do
-	case $yn in
-		Yes )
-		    cecho "Ok! installing apps, please wait ... " $yellow
-		    sudo apt-get install -y ${apps[@]}
-		    break;;
-		No ) break;;
-	esac
+  case $yn in
+    Yes )
+        cecho "Ok! installing apps, please wait ... " $yellow
+        sudo apt-get install -y ${apps[@]}
+        break;;
+    No ) break;;
+  esac
 done
 
 
@@ -106,8 +110,11 @@ echo -e "\033[40;32m install liquidprompt \033[0m"
 git clone https://github.com/nojhan/liquidprompt.git ~/.liquidprompt
 source ~/.liquidprompt/liquidprompt
 
-echo -e "\033[40;32m install thefuck: you can also use this to install thefuck on macosx \033[0m"
-wget -O - https://raw.githubusercontent.com/nvbn/thefuck/master/install.sh | sh - && $0
+#echo -e "\033[40;32m install thefuck: you can also use this to install thefuck on macosx \033[0m"
+#wget -O - https://raw.githubusercontent.com/nvbn/thefuck/master/install.sh | sh - && $0
+echo -e "\033[40;32m install thefuck: sudo -H pip install thefuck \033[0m"
+sudo -H pip install thefuck
+
 
 read -p "install the awesome swagger, are you sure? (y/n) " -n 1;
 echo "npm install -g swagger";
