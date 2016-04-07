@@ -130,7 +130,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi;
 
 read -p "install the awesome tool htop2.0, are you sure? (y/n) " -n 1;
-CUR_DIR = $(pwd)
+CUR_DIR=$(pwd)
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "install htop2.0";
   git clone https://github.com/hishamhm/htop
@@ -153,18 +153,20 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   fi
 
   echo -e "\033[40;32m ecssserver -c $SS_CFG -d stop 033[0m"
-  cat > "$SS_CFG" <<EOF
-  {
-    "server":"my_server_ip",
-    "server_port":8388,
-    "local_address": "127.0.0.1",
-    "local_port":1080,
-    "password":"mypassword",
-    "timeout":300,
-    "method":"aes-256-cfb",
-    "fast_open": false
-  }
-  EOF
+
+cat > "$SS_CFG" <<EOF
+{
+  "server":"my_server_ip",
+  "server_port":8388,
+  "local_address": "127.0.0.1",
+  "local_port":1080,
+  "password":"mypassword",
+  "timeout":300,
+  "method":"aes-256-cfb",
+  "fast_open": false
+}
+EOF
+
   echo -e "\033[40;32m ecssserver -c $SS_CFG -d start 033[0m"
 
   ssserver -c /etc/shadowsocks.json -d start
