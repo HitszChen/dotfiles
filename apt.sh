@@ -149,7 +149,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   SS_CFG="/etc/shadowsocks.json"
   if [ ! -f "$SS_CFG" ]; then
     echo "create the shadowsocks config file: /etc/shadowsocks.json";
-    touch "$SS_CFG"
+    sudo touch "$SS_CFG"
   fi
 
   echo -e "\033[40;32m ecssserver -c $SS_CFG -d stop 033[0m"
