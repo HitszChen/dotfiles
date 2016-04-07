@@ -148,10 +148,10 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
   SS_CFG="/etc/shadowsocks.json"
   if [ ! -f "$SS_CFG" ]; then
-    echo "create the shadowsocks config file: /etc/shadowsocks.json";
+    echo "no found shadowsocks config file: /etc/shadowsocks.json";
     sudo touch "$SS_CFG"
   fi
-
+  sudo chmod a+w "$SS_CFG"
 
 cat > "$SS_CFG" <<EOF
 {
@@ -168,8 +168,8 @@ EOF
 
   echo -e "\033[40;32m starting the shadowsocks \033[0m"
 
-  ecssserver -c $SS_CFG -d stop
-  ecssserver -c $SS_CFG -d start
+  ssserver -c $SS_CFG -d stop
+  ssserver -c $SS_CFG -d start
 fi;
 
 echo ""
