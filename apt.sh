@@ -124,8 +124,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi;
 
 read -p "install the awesome tool terminal stackoverflow how2, are you sure? (y/n) " -n 1;
-echo "npm install -g how2";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo "npm install -g how2";
   sudo npm install -g how2
 fi;
 
@@ -146,8 +146,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "sudo pip install shadowsocks";
   sudo pip install shadowsocks
 
-  $SS_CFG="/etc/shadowsocks.json"
+  SS_CFG="/etc/shadowsocks.json"
   if [ ! -f "$SS_CFG" ]; then
+    echo "create the shadowsocks config file: /etc/shadowsocks.json";
     touch "$SS_CFG"
   fi
 
