@@ -180,7 +180,6 @@ brew install proxychains-ng
 brew install the_silver_searcher
 # Note: this installs `npm` too, using the recommended installation method.
 brew install node
-brew install how2
 brew install iojs
 brew install cask
 # cool hack command
@@ -248,6 +247,12 @@ read -p "install the awesome swagger, are you sure? (y/n) " -n 1;
 echo "npm install -g swagger";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   npm install -g swagger
+fi;
+
+read -p "install the awesome tool terminal stackoverflow how2, are you sure? (y/n) " -n 1;
+echo "npm install -g how2";
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  npm install -g how2
 fi;
 
 echo -e "\033[40;33m change the default shell into: /user/local/bin/bash\033[0m"
