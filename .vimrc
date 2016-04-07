@@ -36,6 +36,10 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/seoul256.vim'
 Plug 'tomasr/molokai'
+Plug 'cocopon/iceberg.vim'
+Plug 'zenorocha/dracula-theme'
+Plug 'daylerees/colour-schemes'
+
 
 " languages-perl
 Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
@@ -423,8 +427,13 @@ au Syntax * RainbowParenthesesLoadBraces
 
 if (&t_Co == 256 || has('gui_running'))
     if ($TERM_PROGRAM == 'iTerm.app')
-        colorscheme molokai
+        "colorscheme molokai
+        "colorscheme iceberg
+        colorscheme dracula
     else
-        colorscheme solarized
+        "colorscheme solarized
+        "colorscheme iceberg
+        colorscheme dracula
     endif
 endif
+
