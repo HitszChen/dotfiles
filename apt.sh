@@ -63,6 +63,7 @@ apps=(
     perl
     make
     build-essential
+    cmake
 
     ## for python
     python-pip
