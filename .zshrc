@@ -128,6 +128,10 @@ fi
 alias map="xargs -n1"
 alias pc4="proxychains4"
 
+# for go through G-W-F
+alias ssl="sslocal -c /etc/shadowsocks.json -d -q "
+alias sss="ssserver -c /etc/shadowsocks.json -d -q "
+
 # 列出系统最大的文件 快捷 maxfile 即可
 maxfile() {
    lsof / | awk '{ if($7 > 1048576) print $7/1048576 "MB "$9 }' | sort -n -u | tail
