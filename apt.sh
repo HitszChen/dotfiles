@@ -148,7 +148,7 @@ fi;
 echo ""
 echo ""
 
-read -p "do you want to go through G-F-W? (y/n) " -n 1;
+read -p "For China users, do you want to go through G-F-W? (y/n) " -n 1;
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "sudo pip install shadowsocks";
   sudo -H pip install shadowsocks
