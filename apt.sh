@@ -124,18 +124,21 @@ echo -e "\033[40;32m install thefuck: sudo -H pip install thefuck \033[0m"
 sudo -H pip install thefuck
 
 
+echo ""
 read -p "install the awesome swagger, are you sure? (y/n) " -n 1;
 echo "npm install -g swagger";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   sudo npm install -g swagger
 fi;
 
+echo ""
 read -p "install the awesome tool terminal stackoverflow how2, are you sure? (y/n) " -n 1;
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "npm install -g how2";
   sudo npm install -g how2
 fi;
 
+echo ""
 read -p "install the awesome tool htop2.0, are you sure? (y/n) " -n 1;
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "install htop2.0";
