@@ -25,8 +25,15 @@ cecho() {
 
 
 
-cecho "attension: please make sure you have installed the command line tools use: xcode-select --install" $yellow
+cecho "config the DNS" $yellow
 echo ""
+
+sudo cat > "$SS_CFG" <<EOF
+nameserver 180.76.76.76
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+EOF
+
 
 
 if hash apt-get 2>/dev/null; then
