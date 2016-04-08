@@ -39,6 +39,7 @@ sudo -v
 cecho "config the DNS" $yellow
 echo ""
 
+sudo chmod a+x  /etc/resolv.conf
 sudo cat > /etc/resolv.conf <<EOF
 nameserver 180.76.76.76
 nameserver 8.8.8.8
@@ -159,7 +160,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "no found shadowsocks config file: /etc/shadowsocks.json";
     sudo touch "$SS_CFG"
   fi
-  #sudo chmod a+w "$SS_CFG"
+  sudo chmod a+w "$SS_CFG"
 
 sudo cat > "$SS_CFG" <<EOF
 {
