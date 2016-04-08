@@ -196,8 +196,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   sudo apt-get install ubuntu-tweak
   echo ""
   echo "install themes"
-  wget -P /tmp/ https://github.com/anmoljagetia/Flatabulous/archive/master.zip
-  unzip master.zip -d /usr/share/themes/
+  wget -O flatTheme.zip https://github.com/anmoljagetia/Flatabulous/archive/master.zip
+  sudo unzip flatTheme.zip -d /usr/share/themes/
   echo ""
 
   echo "install the icons"
@@ -222,5 +222,8 @@ fi;
 
 echo -e "\033[40;32m change the default shell into: /bin/bash\033[0m"
 sudo chsh -s /bin/bash
+
+echo -e "\033[40;32mclean the temp files: flatTheme.zip\033[0m"
+rm flatTheme.zip
 
 cecho "Done, Happy Hacking At the Speed Of The Thought" $green
