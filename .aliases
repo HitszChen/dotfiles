@@ -150,6 +150,6 @@ alias reload="exec $SHELL -l"
 
 # proxy to local shadowsocks proxy, eg: pc4 ping www.google.com
 alias pc4="proxychains4"
-alias ssl="sslocal -c /etc/shadowsocks.json -d -q "
-alias sss="ssserver -c /etc/shadowsocks.json -d -q "
+alias ssl="sslocal -c /etc/shadowsocks.json -d "
+alias sss="ssserver -c /etc/shadowsocks.json -d "
 
