@@ -58,7 +58,7 @@ sudo apt-add-repository ppa:ubuntu-elisp/ppa
 sudo apt-get update
 
 cecho "purge the old tools: firefox ..." $yellow
-sudo apt-get purge firefox
+#sudo apt-get purge firefox
 
 apps=(
     # Utilities
