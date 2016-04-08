@@ -255,6 +255,45 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   npm install -g how2
 fi;
 
+
+
+read -p "do you want to go through G-F-W use shadowsocks client of python version ? (y/n) " -n 1;
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo "sudo pip install shadowsocks";
+  sudo -H pip install shadowsocks
+
+  echo -e "\033[40;32m deploy the proxy server on your remote vps: server[1,2,3] \033[0m"
+
+  SS_CFG="/etc/shadowsocks.json"
+  if [ ! -f "$SS_CFG" ]; then
+    echo "no found shadowsocks config file: /etc/shadowsocks.json";
+    sudo touch "$SS_CFG"
+  fi
+  sudo chmod a+w "$SS_CFG"
+
+cat > "$SS_CFG" <<EOF
+{
+  "server":["server1","server2","server3"],
+  "server_port":serverPort,
+  "local_address": "127.0.0.1",
+  "local_port":1080,
+  "password":"password",
+  "timeout":300,
+  "method":"aes-256-cfb",
+  "fast_open": false
+}
+EOF
+
+  echo -e "\033[40;32m you can start the shadowsocks server on remote vps: sudo ssserver -c /etc/shadowsocks.json -d start \033[0m"
+  #sudo ssserver -c $SS_CFG -d stop
+  #sudo ssserver -c $SS_CFG -d start
+  echo -e "\033[40;32m you can start the shadowsocks client on your local laptop: sslocal -c /etc/shadowsocks.json \033[0m"
+fi;
+
+echo -e "\033[40;32m SS on windows has the feature -Share over LAN, but mac osx SS does not support the feature, you should use the: brew install privoxy \033[0m"
+brew install privoxy
+
+
 echo -e "\033[40;33m change the default shell into: /user/local/bin/bash\033[0m"
 sudo chsh -s /usr/local/bin/bash
 
