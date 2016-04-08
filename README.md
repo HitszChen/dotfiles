@@ -13,6 +13,12 @@ Disclaimer: I have tuned the dotfiles for my own use. Some of the setup may not 
 * support zsh && bash both.
 * support both ubuntu and macosx automatic deployment.
 
+### for ubuntu
+
+* add an awesome flat theme **Flatabulous** deployment
+* add some cool utilities, htop2, swagger, how2 , thefuck ...
+* for china users, add **shadowsocks** automatically deployment
+
 
 ## Attension: get you into colorful world
 
@@ -45,7 +51,7 @@ cd dotfiles
 set -- -f; source bootsrap.sh
 ```
 
-(the following guide is from Mathias's project. Read on if you want to know more.)
+**(the following guide is from Mathias's project. Read on if you want to know more.)**
 
 ### Using Git and the bootstrap script
 
