@@ -160,9 +160,9 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "no found shadowsocks config file: /etc/shadowsocks.json";
     sudo touch "$SS_CFG"
   fi
-  sudo chmod a+w "$SS_CFG"
+  #sudo chmod a+w "$SS_CFG"
 
-cat > "$SS_CFG" <<EOF
+sudo cat > "$SS_CFG" <<EOF
 {
   "server":["server1","server2","server3"],
   "server_port":serverPort,

@@ -274,7 +274,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   fi
   sudo chmod a+w "$SS_CFG"
 
-cat > "$SS_CFG" <<EOF
+sudo cat > "$SS_CFG" <<EOF
 {
   "server":["server1","server2","server3"],
   "server_port":serverPort,
@@ -295,8 +295,13 @@ fi;
 
 echo ""
 echo -e "\033[40;32m SS on windows has the feature -Share over LAN, but mac osx SS does not support the feature, you should use the: brew install privoxy \033[0m"
+echo -e "\033[40;32m and then, vim /usr/local/etc/privoxy/config, and modify as follows: \033[0m"
 echo ""
 brew install privoxy
+sudo cat >> /usr/local/etc/privoxy/config <<EOF
+listen-address  0.0.0.0:8118
+forward-socks5t   /               127.0.0.1:1080 .
+EOF
 
 
 echo -e "\033[40;33m change the default shell into: /user/local/bin/bash\033[0m"
