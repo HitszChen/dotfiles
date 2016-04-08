@@ -39,13 +39,12 @@ sudo -v
 cecho "config the DNS" $yellow
 echo ""
 
-sudo chmod a+x  /etc/resolv.conf
-sudo cat > /etc/resolv.conf <<EOF
+sudo chmod a+w  /etc/resolv.conf
+cat > /etc/resolv.conf <<EOF
 nameserver 180.76.76.76
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 EOF
-
 
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
@@ -162,11 +161,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   fi
   sudo chmod a+w "$SS_CFG"
 
-sudo cat > "$SS_CFG" <<EOF
+cat > "$SS_CFG" <<EOF
 {
-  "server":["server1","server2","server3"],
-  "server_port":serverPort,
-  "local_address": "127.0.0.1",
+  "server":["server1","server2"],
+  "server_port":8080,
+  "local_address":"127.0.0.1",
   "local_port":1080,
   "password":"password",
   "timeout":300,

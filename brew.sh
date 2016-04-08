@@ -274,11 +274,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   fi
   sudo chmod a+w "$SS_CFG"
 
-sudo cat > "$SS_CFG" <<EOF
+cat > "$SS_CFG" <<EOF
 {
-  "server":["server1","server2","server3"],
-  "server_port":serverPort,
-  "local_address": "127.0.0.1",
+  "server":["server1","server2"],
+  "server_port":8080,
+  "local_address":"127.0.0.1",
   "local_port":1080,
   "password":"password",
   "timeout":300,
