@@ -24,18 +24,6 @@ cecho() {
 }
 
 
-
-cecho "config the DNS" $yellow
-echo ""
-
-sudo cat > /etc/resolv.conf <<EOF
-nameserver 180.76.76.76
-nameserver 8.8.8.8
-nameserver 8.8.4.4
-EOF
-
-
-
 if hash apt-get 2>/dev/null; then
   cecho "apt has been installed, just continue install ..." $green
 else
@@ -46,6 +34,17 @@ fi
 
 # Ask for the administrator password upfront.
 sudo -v
+
+
+cecho "config the DNS" $yellow
+echo ""
+
+sudo cat > /etc/resolv.conf <<EOF
+nameserver 180.76.76.76
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+EOF
+
 
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
