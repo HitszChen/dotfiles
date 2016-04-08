@@ -146,6 +146,8 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "sudo pip install shadowsocks";
   sudo -H pip install shadowsocks
 
+  echo -e "\033[40;32m deploy the proxy server \033[0m"
+
   SS_CFG="/etc/shadowsocks.json"
   if [ ! -f "$SS_CFG" ]; then
     echo "no found shadowsocks config file: /etc/shadowsocks.json";
@@ -155,21 +157,21 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
 cat > "$SS_CFG" <<EOF
 {
-  "server":"my_server_ip",
-  "server_port":8388,
+  "server":"serverIp",
+  "server_port":serverPort,
   "local_address": "127.0.0.1",
   "local_port":1080,
-  "password":"mypassword",
+  "password":"password",
   "timeout":300,
   "method":"aes-256-cfb",
   "fast_open": false
 }
 EOF
 
-  echo -e "\033[40;32m starting the shadowsocks \033[0m"
-
-  ssserver -c $SS_CFG -d stop
-  ssserver -c $SS_CFG -d start
+  echo -e "\033[40;32m you can start the shadowsocks server: sudo ssserver -c /etc/shadowsocks.json -d start \033[0m"
+  #sudo ssserver -c $SS_CFG -d stop
+  #sudo ssserver -c $SS_CFG -d start
+  echo -e "\033[40;32m you can start the shadowsocks client: sslocal -c /etc/shadowsocks.json \033[0m"
 fi;
 
 echo ""
