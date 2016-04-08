@@ -76,6 +76,7 @@ apps=(
     python-dev
 
     ## Dev tools
+    unzip
     cmatrix
     wget
     curl
@@ -181,12 +182,40 @@ EOF
 fi;
 
 echo ""
-echo ""
-echo -e "\033[40;32m You can refer: https://blog.anmoljagetia.me/flatabulous-ubuntu-theme/  website to deploy you theme 033[0m"
-echo ""
-echo ""
-echo ""
-echo ""
+read -p "install a awesome flat theme icons for your ubuntu, are you sure? (y/n) " -n 1;
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo "install the flat themes and icons for ubuntu ...";
+  echo -e "\033[40;32m You can refer: https://blog.anmoljagetia.me/flatabulous-ubuntu-theme/  website to deploy you theme 033[0m"
+  echo ""
+  echo "install the Ubuntu tweak tool"
+  sudo add-apt-repository ppa:tualatrix/ppa
+  sudo apt-get update
+  sudo apt-get install ubuntu-tweak
+  echo ""
+  echo "install themes"
+  wget -P /tmp/ https://github.com/anmoljagetia/Flatabulous/archive/master.zip
+  unzip master.zip -d /usr/share/themes/
+  echo ""
+
+  echo "install the icons"
+  sudo add-apt-repository ppa:noobslab/icons
+  sudo apt-get update
+  sudo apt-get install ultra-flat-icons
+  #sudo apt-get install ultra-flat-icons-orange
+  #sudo apt-get install ultra-flat-icons-gree
+  echo ""
+
+cat <<EOF
+Now press your super key,
+search for Ubuntu Tweak and fire it.
+Under the tweaks tab, there is an option for theme.
+Under that select the Flatabulous theme.
+Under the icon settings, select ultra-flat-icons.
+Restart your computer, and you should be good to go!
+EOF
+
+  echo ""
+fi;
 
 echo -e "\033[40;32m change the default shell into: /bin/bash\033[0m"
 sudo chsh -s /bin/bash
