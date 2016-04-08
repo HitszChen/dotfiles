@@ -185,6 +185,32 @@ EOF
   echo -e "\033[40;32m you can start the shadowsocks client on your local laptop: sslocal -c /etc/shadowsocks.json \033[0m"
 fi;
 
+read -p "do you want to user proxychains in terminal to go through g-w-f (y/n) " -n 1;
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  PC_CFG_DIR=$HOME/.proxychains
+  if [ ! -f "$PC_CFG_DIR/proxychains.conf" ]; then
+    echo "no found shadowsocks config file: $PC_CFG_DIR/proxychains.conf";
+    sudo touch "$PC_CFG_DIR/proxychains.conf"
+  fi
+  sudo chmod a+w "$PC_CFG_DIR/proxychains.conf"
+
+cat > "$PC_CFG_DIR/proxychains.conf" <<EOF
+# proxychains.conf  VER 4.x
+#
+#        HTTP, SOCKS4a, SOCKS5 tunneling proxifier with DNS.
+strict_chain
+proxy_dns
+remote_dns_subnet 224
+tcp_read_time_out 15000
+tcp_connect_time_out 8000
+[ProxyList]
+# socks4 	127.0.0.1 9050
+socks5 127.0.0.1 1080
+EOF
+
+fi;
+
+
 echo ""
 read -p "install a awesome flat theme icons for your ubuntu, are you sure? (y/n) " -n 1;
 if [[ $REPLY =~ ^[Yy]$ ]]; then
