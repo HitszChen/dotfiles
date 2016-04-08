@@ -290,7 +290,9 @@ EOF
   echo -e "\033[40;32m you can start the shadowsocks client on your local laptop: sslocal -c /etc/shadowsocks.json \033[0m"
 fi;
 
+echo ""
 echo -e "\033[40;32m SS on windows has the feature -Share over LAN, but mac osx SS does not support the feature, you should use the: brew install privoxy \033[0m"
+echo ""
 brew install privoxy
 
 
