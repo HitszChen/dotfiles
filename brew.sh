@@ -224,6 +224,9 @@ apps=(
     java
     jumpcut
     steam
+
+    #A Mac PrefPane to manage all your Homebrew-installed services
+    launchrocket
 )
 
 for item in ${apps[@]}; do
