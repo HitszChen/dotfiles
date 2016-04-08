@@ -70,6 +70,7 @@ apps=(
     make
     build-essential
     cmake
+    proxychains
 
     ## for python
     python-pip
