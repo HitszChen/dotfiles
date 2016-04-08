@@ -185,11 +185,14 @@ EOF
   echo -e "\033[40;32m you can start the shadowsocks client on your local laptop: sslocal -c /etc/shadowsocks.json \033[0m"
 fi;
 
+echo ""
 read -p "do you want to user proxychains in terminal to go through g-w-f (y/n) " -n 1;
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   PC_CFG_DIR=$HOME/.proxychains
   if [ ! -f "$PC_CFG_DIR/proxychains.conf" ]; then
+    echo ""
     echo "no found shadowsocks config file: $PC_CFG_DIR/proxychains.conf";
+    sudo mkdir "$PC_CFG_DIR"
     sudo touch "$PC_CFG_DIR/proxychains.conf"
   fi
   sudo chmod a+w "$PC_CFG_DIR/proxychains.conf"
