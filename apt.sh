@@ -211,7 +211,7 @@ tcp_connect_time_out 8000
 socks5 127.0.0.1 1080
 EOF
 
-  echo -e "\033[40;32m attension!!! vi /usr/lib/proxychains3/proxyresolv, DNS_SERVER=x\033[0m"
+  echo -e "\033[40;32m attension!!! vi /usr/lib/proxychains3/proxyresolv, DNS_SERVER=8.8.8.8 \033[0m"
   echo -e "\033[40;32m attension!!! sudo ln -s /usr/lib/proxychains3/proxyresolv /usr/bin/ \033[0m"
   sudo ln -s /usr/lib/proxychains3/proxyresolv /usr/bin/
 fi;
