@@ -224,7 +224,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 
 cat >> "/etc/privoxy/config" <<EOF
 # 监听端口为8118，如果需要其他设备访问，则需要将ip改为路由器的IP 192.168.1.1 或 0.0.0.0 或者直接 :8118
-listen-address  192.168.1.1:8118
+listen-address  127.0.0.1:8118
 
 # ss运行于1080端口，我们加入下面的配置，不要忘了最后的点.
 forward-socks5 / 127.0.0.1:1080 .
@@ -237,6 +237,7 @@ EOF
 
     sudo chmod o-w "/etc/privoxy/config"
 
+echo ""
 cat <<EOF
 Now: $ /etc/init.d/privoxy restart
 add followings into your .bashrc or .zshrc
