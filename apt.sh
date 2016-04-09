@@ -88,6 +88,10 @@ apps=(
     openssh-server
     nodejs
     npm
+
+    ## Terminal
+    tmux
+    byobu
 )
 
 for item in ${apps[@]}; do
