@@ -126,11 +126,18 @@ fi
 # For example, to list all directories that contain a certain file:
 # find . -name .gitattributes | map dirname
 alias map="xargs -n1"
-alias pc4="proxychains4"
+alias pc4="proxychains4 "
+alias pc3="proxychains "
 
-# for go through G-W-F
-alias ssl="sslocal -c /etc/shadowsocks.json -d -q "
-alias sss="ssserver -c /etc/shadowsocks.json -d -q "
+# for shadowsacks go through G-W-F
+alias ssl="sslocal -c /etc/shadowsocks.json -d "
+alias sss="ssserver -c /etc/shadowsocks.json -d "
+alias privoxy="/etc/init.d/privoxy restart"
+
+# for privoxy: convert the shadowsocks into http proxy
+alias privoxy="/etc/init.d/privoxy restart"
+alias proxy='export http_proxy=http://127.0.0.1:8118;export HTTPS_PROXY=$http_proxy;export HTTP_PROXY=$http_proxy;export FTP_PROXY=$http_proxy;export https_proxy=$http_proxy;export ftp_proxy=$http_proxy;'
+alias noproxy='unset http_proxy;unset HTTPS_PROXY;unset HTTP_PROXY;unset FTP_PROXY;unset https_proxy;unset ftp_proxy'
 
 # 列出系统最大的文件 快捷 maxfile 即可
 maxfile() {
@@ -249,6 +256,11 @@ alias testdb="ssh -o ServerAliveInterval=10 root@testdb"
 # for emacs ggtags
 export GTAGSCONF=/usr/local/share/gtags/gtags.conf
 export GTAGSLABEL=ctags
+
+
+# proxy settings
+export http_proxy='http://127.0.0.1:8118'
+export https_proxy='http://127.0.0.1:8118'
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

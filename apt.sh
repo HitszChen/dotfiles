@@ -151,8 +151,7 @@ fi;
 
 echo ""
 echo ""
-
-read -p "For China users, do you want to go through G-F-W? (y/n) " -n 1;
+read -p "For China users,>>> shadowsocks: [ SOCKS5_PROXY ] without [ HTTP_PROXY ] <<< go through G-F-W? (y/n) " -n 1;
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "sudo pip install shadowsocks";
   sudo -H pip install shadowsocks
@@ -186,7 +185,7 @@ EOF
 fi;
 
 echo ""
-read -p "do you want to user proxychains in terminal to go through g-w-f (y/n) " -n 1;
+read -p "Use proxychains proxy the socks5 request to the SS (y/n) " -n 1;
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   PC_CFG_DIR=$HOME/.proxychains
   if [ ! -f "$PC_CFG_DIR/proxychains.conf" ]; then
@@ -216,6 +215,38 @@ EOF
   sudo ln -s /usr/lib/proxychains3/proxyresolv /usr/bin/
 fi;
 
+
+echo ""
+read -p "Use privoxy to transform Socks5 Proxy into HTTP Proxy (y/n) " -n 1;
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  if [ -f "/etc/privoxy/config" ]; then
+    sudo chmod o+w "/etc/privoxy/config"
+
+cat >> "/etc/privoxy/config" <<EOF
+# 监听端口为8118，如果需要其他设备访问，则需要将ip改为路由器的IP 192.168.1.1 或 0.0.0.0 或者直接 :8118
+listen-address  192.168.1.1:8118
+
+# ss运行于1080端口，我们加入下面的配置，不要忘了最后的点.
+forward-socks5 / 127.0.0.1:1080 .
+
+# local network do not use proxy
+forward 192.168.*.*/ .
+forward 10.*.*.*/ .
+forward 127.*.*.*/ .
+EOF
+
+    sudo chmod o-w "/etc/privoxy/config"
+
+cat <<EOF
+Now: $ /etc/init.d/privoxy restart
+add followings into your .bashrc or .zshrc
+
+export http_proxy='http://127.0.0.1:8118'
+export https_proxy='http://127.0.0.1:8118'
+EOF
+
+  fi;
+fi;
 
 echo ""
 read -p "install a awesome flat theme icons for your ubuntu, are you sure? (y/n) " -n 1;
@@ -250,7 +281,6 @@ Under the icon settings, select ultra-flat-icons.
 Restart your computer, and you should be good to go!
 EOF
 
-  echo ""
 fi;
 
 echo ""
