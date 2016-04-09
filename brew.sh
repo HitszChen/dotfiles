@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Set the colours you can use
 black='\033[0;30m'
@@ -301,14 +302,14 @@ echo ""
 read -p "Use privoxy to transform Socks5 Proxy into HTTP Proxy (y/n) " -n 1;
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   if [ -f "/usr/local/etc/privoxy/config" ]; then
-    sudo chmod o+w "/etc/privoxy/config"
+    sudo chmod o+w "/usr/local/etc/privoxy/config"
 
 sudo cat >> /usr/local/etc/privoxy/config <<EOF
 listen-address  0.0.0.0:8118
 forward-socks5t / 127.0.0.1:1080 .
 EOF
 
-    sudo chmod o-w "/etc/privoxy/config"
+    sudo chmod o-w "/usr/local/etc/privoxy/config"
   fi
 fi
 
