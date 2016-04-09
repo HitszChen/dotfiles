@@ -6,7 +6,8 @@ git pull origin master;
 
 function doIt() {
 	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh"  --exclude "vim.sh" --exclude "emacs.sh" \
-	      --exclude "README.md" --exclude "LICENSE-MIT.txt" --exclude ".vimrc" --exclude ".vim" --exclude ".emacs.d" -avh --no-perms . ~;
+	      --exclude "README.md" --exclude "LICENSE-MIT.txt" --exclude ".vimrc" --exclude ".vim" --exclude ".emacs.d" \
+        --exclude ".tmux/" -avh --no-perms . ~;
 	source ~/.bash_profile;
 }
 

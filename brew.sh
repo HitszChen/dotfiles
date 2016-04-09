@@ -251,22 +251,21 @@ done
 
 
 read -p "install the awesome swagger, are you sure? (y/n) " -n 1;
-echo "npm install -g swagger";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo ""
   npm install -g swagger
 fi;
 
+echo ""
 read -p "install the awesome tool terminal stackoverflow how2, are you sure? (y/n) " -n 1;
-echo "npm install -g how2";
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   npm install -g how2
 fi;
 
 
-
+echo ""
 read -p "do you want to go through G-F-W use shadowsocks client of python version ? (y/n) " -n 1;
 if [[ $REPLY =~ ^[Yy]$ ]]; then
-  echo "sudo pip install shadowsocks";
   sudo -H pip install shadowsocks
 
   echo -e "\033[40;32m deploy the proxy server on your remote vps: server[1,2,3] \033[0m"
