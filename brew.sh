@@ -176,7 +176,6 @@ brew install plantuml
 brew install git-flow-avh
 # imagemagick vs graphicsmagick
 brew install graphicsmagick
-brew install proxychains-ng
 brew install the_silver_searcher
 # Note: this installs `npm` too, using the recommended installation method.
 brew install node
@@ -184,6 +183,10 @@ brew install iojs
 brew install cask
 # cool hack command
 brew install cmatrix
+
+# proxy tools
+brew install proxychains-ng
+brew install privoxy
 
 # Remove outdated versions from the cellar.
 cecho "Removing outdated versions from the brew cellar." $yellow
@@ -293,19 +296,39 @@ EOF
   echo -e "\033[40;32m you can start the shadowsocks client on your local laptop: sslocal -c /etc/shadowsocks.json \033[0m"
 fi;
 
+
 echo ""
-echo -e "\033[40;32m SS on windows has the feature -Share over LAN, but mac osx SS does not support the feature, you should use the: brew install privoxy \033[0m"
-echo -e "\033[40;32m and then, vim /usr/local/etc/privoxy/config, and modify as follows: \033[0m"
-echo ""
-brew install privoxy
+read -p "Use privoxy to transform Socks5 Proxy into HTTP Proxy (y/n) " -n 1;
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  if [ -f "/usr/local/etc/privoxy/config" ]; then
+    sudo chmod o+w "/etc/privoxy/config"
+
 sudo cat >> /usr/local/etc/privoxy/config <<EOF
 listen-address  0.0.0.0:8118
-forward-socks5t   /               127.0.0.1:1080 .
+forward-socks5t / 127.0.0.1:1080 .
 EOF
 
+    sudo chmod o-w "/etc/privoxy/config"
+  fi
+fi
 
+
+echo ""
 echo -e "\033[40;33m change the default shell into: /user/local/bin/bash\033[0m"
 sudo chsh -s /usr/local/bin/bash
 
+
+echo ""
+read -p "install an awesome tmux configuration file, are you sure? (y/n) " -n 1;
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo ""
+  git clone https://github.com/gpakosz/.tmux.git
+  if [ -f "$HOME/.tmux.conf" ]; then
+    sudo rm $HOME/.tmux.conf
+  fi;
+  sudo ln -s $CURRENT_DIR/.tmux/.tmux.conf $HOME/.tmux.conf
+  sudo ln -s $CURRENT_DIR/.tmux/.tmux.conf.local $HOME/.tmux.conf.local
+fi;
+echo ""
 
 cecho "Done, Happy Hacking At the Speed Of The Thought" $green

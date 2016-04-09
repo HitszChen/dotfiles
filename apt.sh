@@ -298,6 +298,7 @@ rm flatTheme.zip
 echo ""
 read -p "install an awesome tmux configuration file, are you sure? (y/n) " -n 1;
 if [[ $REPLY =~ ^[Yy]$ ]]; then
+  echo ""
   git clone https://github.com/gpakosz/.tmux.git
   if [ -f "$HOME/.tmux.conf" ]; then
     sudo rm $HOME/.tmux.conf
