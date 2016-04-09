@@ -53,8 +53,6 @@ done
 
 echo ""
 echo ""
-echo ""
-echo ""
-echo ""
-echo ""
 echo -e "\033[40;32m All done, HAPPY HACKING :-) \033[0m"
+echo ""
+echo ""
