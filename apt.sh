@@ -91,7 +91,6 @@ apps=(
 
     ## Terminal
     tmux
-    byobu
 )
 
 for item in ${apps[@]}; do
