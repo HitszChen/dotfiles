@@ -72,6 +72,7 @@ apps=(
     build-essential
     cmake
     proxychains
+    privoxy
 
     ## for python
     python-pip
