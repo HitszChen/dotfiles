@@ -26,7 +26,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-scripts/DrawIt'
 Plug 'terryma/vim-expand-region'
-Plug 'plasticboy/vim-markdown'
+"Plug 'plasticboy/vim-markdown'
 Plug 'aceofall/gtags.vim'
 Plug 'erikzaadi/vim-ansible-yaml'
 
