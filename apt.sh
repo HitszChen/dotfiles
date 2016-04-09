@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # Set the colours you can use
 black='\033[0;30m'
@@ -147,8 +148,7 @@ read -p "install the awesome tool htop2.0, are you sure? (y/n) " -n 1;
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   echo "install htop2.0";
   git clone https://github.com/hishamhm/htop
-  CUR_DIR=$(pwd)
-  cd $CUR_DIR/htop && ./autogen.sh && ./configure && make && sudo ln -s $CUR_DIR/htop/htop /usr/bin/htop
+  cd $CURRENT_DIR/htop && ./autogen.sh && ./configure && make && sudo ln -s $CURRENT_DIR/htop/htop /usr/bin/htop
   cd -
 fi;
 
@@ -293,5 +293,18 @@ sudo chsh -s /bin/bash
 
 echo -e "\033[40;32mclean the temp files: flatTheme.zip\033[0m"
 rm flatTheme.zip
+
+
+echo ""
+read -p "install an awesome tmux configuration file, are you sure? (y/n) " -n 1;
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+  git clone https://github.com/gpakosz/.tmux.git
+  if [ -f "$HOME/.tmux.conf" ]; then
+    sudo rm $HOME/.tmux.conf
+  fi;
+  sudo ln -s $CURRENT_DIR/.tmux/.tmux.conf $HOME/.tmux.conf
+  sudo ln -s $CURRENT_DIR/.tmux/.tmux.conf.local $HOME/.tmux.conf.local
+fi;
+echo ""
 
 cecho "Done, Happy Hacking At the Speed Of The Thought" $green
