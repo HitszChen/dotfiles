@@ -156,7 +156,7 @@ brew install webkit2png
 brew install zopfli
 
 # custom my command line tools
-#brew install tmux
+brew install tmux
 brew install aspell
 brew install ctags
 brew install curl
