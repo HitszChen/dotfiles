@@ -211,6 +211,9 @@ tcp_connect_time_out 8000
 socks5 127.0.0.1 1080
 EOF
 
+  echo -e "\033[40;32m attension!!! vi /usr/lib/proxychains3/proxyresolv, DNS_SERVER=x\033[0m"
+  echo -e "\033[40;32m attension!!! sudo ln -s /usr/lib/proxychains3/proxyresolv /usr/bin/ \033[0m"
+  sudo ln -s /usr/lib/proxychains3/proxyresolv /usr/bin/
 fi;
 
 
@@ -250,6 +253,7 @@ EOF
   echo ""
 fi;
 
+echo ""
 echo -e "\033[40;32m change the default shell into: /bin/bash\033[0m"
 sudo chsh -s /bin/bash
 
