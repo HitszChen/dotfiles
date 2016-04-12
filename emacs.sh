@@ -40,6 +40,7 @@ echo -e "\033[40;32m It will take a long time, just be patient! ... \033[0m"
 echo -e "\033[40;32m cd $HOME/.emacs.d \033[0m"
 cd $HOME/.emacs.d
 
+echo -e "\033[40;32m install the plugins, this will take a long time ... \033[0m"
 cask install
 
 cd $CURRENT_DIR
