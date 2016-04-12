@@ -90,6 +90,7 @@ apps=(
     openssh-server
     nodejs
     npm
+    nmon             # a cool system monitor instead of free and htop
 
     ## Terminal
     tmux
