@@ -26,9 +26,9 @@ lnif "$CURRENT_DIR/.emacs.d" "$HOME/.emacs.d"
 
 
 echo -e "\033[40;32m step 2: Install the cask utility for emacs \033[0m"
-if [ $SYSTYPE = "Linux" ]; then
+if [ `uname -s` = "Linux" ]; then
   curl -fsSL https://raw.githubusercontent.com/cask/cask/master/go | python
-elif [ $SYSTYPE = "Darwin" ]; then
+elif [ `uname -s` = "Darwin" ]; then
   echo -e "\033[40;32m already installed the cask in your mac osx system , just continue ... \033[0m"
 else
   echo -e "\033[40;32m unsupported system, exit \033[0m"
