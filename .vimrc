@@ -187,8 +187,8 @@ noremap <C-h>                <C-w>h
 noremap <C-j>                <C-w>j
 noremap <C-k>                <C-w>k
 noremap <C-l>                <C-w>l
-nnoremap <C-t>               :tabnew<CR>
-inoremap <C-t>               <Esc>:tabnew<CR>
+"nnoremap <C-t>               :tabnew<CR>
+"inoremap <C-t>               <Esc>:tabnew<CR>
 nnoremap [b                  :bprevious<cr>
 nnoremap ]b                  :bnext<cr>
 noremap <left>               :bp<CR>
