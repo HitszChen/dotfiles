@@ -79,6 +79,7 @@ apps=(
     python-dev
 
     ## Dev tools
+    xsel
     unzip
     cmatrix
     wget
