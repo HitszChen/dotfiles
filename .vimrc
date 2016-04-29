@@ -196,8 +196,8 @@ noremap <right>              :bn<CR>
 nnoremap <leader>q           :q<CR>
 nnoremap <C-e>               2<C-e>
 nnoremap <C-y>               2<C-y>
-nnoremap <C-t>               :tabnew<CR>
-inoremap <C-t>               <Esc>:tabnew<CR>
+"nnoremap <C-t>               :tabnew<CR>
+"inoremap <C-t>               <Esc>:tabnew<CR>
 
 " nomal mapping
 nmap s                       <Plug>(easymotion-s)

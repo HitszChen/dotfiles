@@ -216,6 +216,9 @@ apps=(
     vlc
     qq
 
+    # Mac 上的 Rime 输入法 鼠鬚管: Squirrel
+    squirrel
+
     # Dev Stuff
     cord
     mou
