@@ -73,6 +73,7 @@ apps=(
     cmake
     proxychains
     privoxy
+    lua-socket
 
     ## for python
     python-pip
