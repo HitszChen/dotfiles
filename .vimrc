@@ -31,6 +31,8 @@ Plug 'aceofall/gtags.vim'
 Plug 'erikzaadi/vim-ansible-yaml'
 
 Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'FredKSchott/CoVim'
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
 " themes
 Plug 'vim-airline/vim-airline'
@@ -69,7 +71,6 @@ set clipboard=unnamed                                        " yank and paste wi
 set directory-=.                                             " don't store swapfiles in the current directory
 set ignorecase                                               " case-insensitive search
 set incsearch                                                " search as you type
-set list                                                     " show trailing whitespace
 set number                                                   " show line numbers
 set ruler                                                    " show where you are
 set scrolloff=3                                              " show context above/below cursorline
@@ -212,8 +213,12 @@ noremap <C-l>                <C-w>l
 
 " nomal mapping
 nmap s                       <Plug>(easymotion-s)
-nmap t                       <Plug>(easymotion-s2)
+"nmap t                       <Plug>(easymotion-s2)
 nmap <Leader>cp              :!xclip -i -selection clipboard % <CR><CR>
+
+" no listchars
+nmap <Leader>L               :set list!<CR>
+
 
 " command line mode no recursive mode mapping
 cnoremap <C-k>               <t_ku>

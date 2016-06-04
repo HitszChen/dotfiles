@@ -113,6 +113,15 @@ select yn in "Yes" "No"; do
   esac
 done
 
+#pip install pygments
+#install the global
+#VERSION=6.5
+#wget http://tamacom.com/global/global-${VERSION}.tar.gz
+#tar xvf global-${VERSION}.tar.gz
+#cd global-${VERSION}
+#./configure
+#make
+#make install
 
 echo -e "\033[40;32m install the fzf \033[0m"
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
