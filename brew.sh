@@ -53,7 +53,7 @@ fi
 
 # Install command-line tools using Homebrew.
 # Ask for the administrator password upfront.
-sudo -v
+#sudo -v
 
 # Keep-alive: update existing `sudo` time stamp until the script has finished.
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
@@ -70,7 +70,8 @@ cecho "Install command-line tools ... " $yellow
 # Install GNU core utilities (those that come with OS X are outdated).
 # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
 brew install coreutils
-sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
+#sudo ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
+ln -s /usr/local/bin/gsha256sum /usr/local/bin/sha256sum
 
 # Install some other useful utilities like `sponge`.
 brew install moreutils
@@ -85,8 +86,15 @@ brew install bash
 brew tap homebrew/versions
 brew install bash-completion2
 
+# Switch to using brew-installed bash as default shell
+if ! fgrep -q '/usr/local/bin/bash' /etc/shells; then
+  echo '/usr/local/bin/bash' | sudo tee -a /etc/shells;
+  chsh -s /usr/local/bin/bash;
+fi;
+
 # Install `wget` with IRI support.
 brew install wget --with-iri
+brew install vbindiff
 
 # Install RingoJS and Narwhal.
 # Note that the order in which these are installed is important;
