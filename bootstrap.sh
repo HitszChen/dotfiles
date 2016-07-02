@@ -5,9 +5,18 @@ cd "$(dirname "${BASH_SOURCE}")";
 git pull origin master;
 
 function doIt() {
-	rsync --exclude ".git/" --exclude ".DS_Store" --exclude "bootstrap.sh"  --exclude "vim.sh" --exclude "emacs.sh" \
-	      --exclude "README.md" --exclude "LICENSE-MIT.txt" --exclude ".vimrc" --exclude ".vim" --exclude ".emacs.d" \
-        --exclude ".tmux/" -avh --no-perms . ~;
+	rsync --exclude ".git/" \
+          --exclude ".DS_Store" \
+          --exclude "bootstrap.sh" \
+          --exclude "vim.sh" \
+          --exclude "emacs.sh" \
+          --exclude "README.md" \
+          --exclude "LICENSE-MIT.txt" \
+          --exclude ".vimrc" \
+          --exclude ".vim" \
+          --exclude ".emacs.d" \
+          --exclude ".tmux/" \
+          -avh --no-perms . ~;
 	source ~/.bash_profile;
 }
 
@@ -32,24 +41,24 @@ sysType=`uname -s`
 echo -e "\033[40;32m Your system is $sysType \033[0m"
 
 if [ $sysType = "Linux" ]; then
-  source ./apt.sh;
+    source ./apt.sh;
 elif [ $sysType = "Darwin" ]; then
-  source ./brew.sh;
+    source ./brew.sh;
 else
-  echo -e "\033[40;32m unsupported system, exit \033[0m"
+    echo -e "\033[40;32m unsupported system, exit \033[0m"
 fi
 
 echo -e "\033[40;32m you can enter 1 to deploy my awesome vim configuration or 2 to skip it \033[0m"
 select yn in "Yes" "No"; do
-  case $yn in
-    Yes )
-      echo ""
-      echo ""
-      echo -e "\033[40;32m Cool, i will give you a awesome vim journey ... \033[0m"
-      source ./vim.sh
-      break;;
-    No ) break;;
-  esac
+    case $yn in
+        Yes )
+            echo ""
+            echo ""
+            echo -e "\033[40;32m Cool, i will give you a awesome vim journey ... \033[0m"
+            source ./vim.sh
+            break;;
+        No ) break;;
+    esac
 done
 
 echo ""

@@ -30,6 +30,10 @@ Plug 'terryma/vim-expand-region'
 Plug 'aceofall/gtags.vim'
 Plug 'erikzaadi/vim-ansible-yaml'
 
+Plug 'fatih/vim-go', {'for': 'go'}
+Plug 'FredKSchott/CoVim'
+Plug 'nsf/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
+
 " themes
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -67,7 +71,6 @@ set clipboard=unnamed                                        " yank and paste wi
 set directory-=.                                             " don't store swapfiles in the current directory
 set ignorecase                                               " case-insensitive search
 set incsearch                                                " search as you type
-set list                                                     " show trailing whitespace
 set number                                                   " show line numbers
 set ruler                                                    " show where you are
 set scrolloff=3                                              " show context above/below cursorline
@@ -90,12 +93,21 @@ set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 "set lcs=tab:▸\ ,trail:·
 
 " tab
-set tabstop=4     " 设置Tab键的宽度[等同的空格个数]
-set shiftwidth=4  " 每一次缩进对应的空格数
-set softtabstop=4 " 按退格键时可以一次删掉 4 个空格
-set smarttab      " insert tabs on the start of a line according to shiftwidth, not tabstop 按退格键时可以一次删掉 4 个空格
-set expandtab     " 将Tab自动转化成空格    [需要输入真正的Tab键时，使用 Ctrl+V + Tab]
-set shiftround    " 缩进时，取整 use multiple of shiftwidth when indenting with '<' and '>'
+set expandtab                                             " Use spaces instead of tabs and --------> Ctrl+V + Tab]
+set smarttab                                              " Be smart when using tabs ;)
+set shiftround                                            " Round indent to multiple of 'shiftwidth' for > and < commands
+" 1 tab == 4 spaces
+set shiftwidth=4
+set tabstop=4
+
+set ai                                                     "Auto indent
+set si                                                     "Smart indent
+set nowrap                                                 "Don't Wrap lines (it is stupid)
+
+" Linebreak on 500 characters
+set lbr
+set tw=500
+
 
 " FileEncode Settings
 set encoding=utf-8                                                       " 设置新文件的编码为 UTF-8
@@ -137,7 +149,11 @@ endif
 
 let mapleader = ','
 let g:mapleader = ','
-inoremap jj <ESC>
+
+" This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
+inoremap jj <esc>
+nnoremap JJJJ <nop>
+
 set pastetoggle=<leader>2
 
 map <F2>                     :retab <CR> :wq! <CR>
@@ -157,10 +173,8 @@ nnoremap <leader>n           :NERDTreeToggle<CR>
 nnoremap <leader>]           :TagbarToggle<CR>
 nnoremap <leader>jd          :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gd          :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>w           :w<CR>
 nnoremap <leader>it          :IndentLinesToggle<CR>
 nnoremap <leader>0           :GundoToggle<CR>
-
 nnoremap <Leader>gd          :Gdiff<CR>
 nnoremap <Leader>gc          :Gcommit<CR>
 nnoremap <Leader>ga          :Gcommit --amend<CR>
@@ -177,6 +191,15 @@ nnoremap <Leader>gP          :Git push -u origin<space>
 nnoremap <silent> <Leader>g1 :Git diff<CR>
 nnoremap <silent> <Leader>g2 :Git diff --staged<CR>
 
+" Remove the Windows ^M - when the encodings gets messed up
+noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
+" Fast saving
+map <Leader>w :w<CR>
+imap <Leader>w <ESC>:w<CR>
+vmap <Leader>w <ESC><ESC>:w<CR>
+
+
 " no recursive normal and visual mode mapping
 noremap <leader>gh           :! open https://github.com<CR>
 noremap <leader>gg           :! open https://google.com<CR>
@@ -187,22 +210,15 @@ noremap <C-h>                <C-w>h
 noremap <C-j>                <C-w>j
 noremap <C-k>                <C-w>k
 noremap <C-l>                <C-w>l
-"nnoremap <C-t>               :tabnew<CR>
-"inoremap <C-t>               <Esc>:tabnew<CR>
-nnoremap [b                  :bprevious<cr>
-nnoremap ]b                  :bnext<cr>
-noremap <left>               :bp<CR>
-noremap <right>              :bn<CR>
-nnoremap <leader>q           :q<CR>
-nnoremap <C-e>               2<C-e>
-nnoremap <C-y>               2<C-y>
-nnoremap <C-t>               :tabnew<CR>
-inoremap <C-t>               <Esc>:tabnew<CR>
 
 " nomal mapping
 nmap s                       <Plug>(easymotion-s)
-nmap t                       <Plug>(easymotion-s2)
+"nmap t                       <Plug>(easymotion-s2)
 nmap <Leader>cp              :!xclip -i -selection clipboard % <CR><CR>
+
+" no listchars
+nmap <Leader>L               :set list!<CR>
+
 
 " command line mode no recursive mode mapping
 cnoremap <C-k>               <t_ku>
@@ -215,6 +231,40 @@ vmap v                      <Plug>(expand_region_expand)
 vmap V                      <Plug>(expand_region_shrink)
 vnoremap <                  <gv
 vnoremap >                  >gv
+
+" Close the current buffer (w/o closing the current window)
+map <leader>bd :Bclose<cr>
+
+" Close all the buffers
+map <leader>bda :1,1000 bd!<cr>
+
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>tj :tabnext
+map <leader>tk :tabprevious
+
+" Let 'tl' toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Specify the behavior when switching between buffers
+try
+  set switchbuf=useopen,usetab,newtab
+  set stal=2
+catch
+endtry
+
 
 
 " Fix Cursor in TMUX
@@ -379,6 +429,22 @@ if has("autocmd")
   autocmd FileType c,cpp,erlang,go,lua,javascript,python,perl autocmd BufWritePre <buffer> :call <SID>StripTrailingWhitespaces()
   au Syntax * RainbowParenthesesLoadRound
 endif
+
+
+" vimgo {{{
+" 1. vim a.go
+" 2. :GoInstallBinaries
+
+    let g:go_highlight_functions = 1
+    let g:go_highlight_methods = 1
+    let g:go_highlight_structs = 1
+    let g:go_highlight_operators = 1
+    let g:go_highlight_build_constraints = 1
+
+    let g:go_fmt_fail_silently = 1
+    " let g:go_fmt_command = "goimports"
+    " let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
+" }}}
 
 
 " ======================== UI =======================
